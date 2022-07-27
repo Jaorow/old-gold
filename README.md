@@ -11,5 +11,5 @@ This repo was created very late in the project as running ```npm audit fix --for
 ![Startup](img/startup.png)
 ### Page if gold price has risen since historical date.
 ![risen](img/pos.png)
-## Page if gold price has dropped since historical date.
+### Page if gold price has dropped since historical date.
 ![fallen](img/neg.png)
