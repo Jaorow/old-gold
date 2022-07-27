@@ -7,4 +7,9 @@ Then the react app compares the prices and offers you the ability to enter how m
 This repo was created very late in the project as running ```npm audit fix --force``` will actually break everyting, you can find the now decrepid repo at [Jaorow/phase2Frontend](https://github.com/Jaorow/phase2Frontend)
 
 ## PROJECT DETAILS
+### Start screen before any input is receved.
 ![Startup](img/startup.png)
+### page if gold price has risen since historical date.
+![risen](img/pos.png)
+## page if gold price has dropped since historical date.
+![fallen](img/neg.png)
