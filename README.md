@@ -9,7 +9,7 @@ This repo was created very late in the project as running ```npm audit fix --for
 ## PROJECT DETAILS
 ### Start screen before any input is receved.
 ![Startup](img/startup.png)
-### page if gold price has risen since historical date.
+### Page if gold price has risen since historical date.
 ![risen](img/pos.png)
-## page if gold price has dropped since historical date.
+## Page if gold price has dropped since historical date.
 ![fallen](img/neg.png)
