@@ -102,7 +102,7 @@ function App() {
       return ("congrats! you made $"+dif);
     }else{
       var dif = ((historical - today)*ounces).toFixed(2);
-      return ("Ohh no you lost$"+dif);
+      return ("Ohh no you lost $"+dif);
     }
     // var total = Dif * ounces; 
     
@@ -139,7 +139,7 @@ function App() {
       let today ={
         base: "NZD",
         date: "2022-07-23",
-        rates: {XAG: 39.72905401000014},
+        rates: {XAG: 32.72905401000014},
         success: true,
         timestamp: 1658361300,
         unit: "per ounce"
