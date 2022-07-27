@@ -7,4 +7,4 @@ Then the react app compares the prices and offers you the ability to enter how m
 This repo was created very late in the project as running ```npm audit fix --force``` will actually break everyting, you can find the now decrepid repo at [Jaorow/phase2Frontend](https://github.com/Jaorow/phase2Frontend)
 
 ## PROJECT DETAILS
-![Startup](img/startup.png)
+![Startup](img/startup.png"hover-test")
