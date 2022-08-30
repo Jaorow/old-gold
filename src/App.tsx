@@ -149,48 +149,21 @@ function App() {
     }
 
     function search() {
-      
-      // had to have faked data during dev in order to not use up all api calls! 
 
-      let today = {
-        base: "NZD",
-        date: "2022-07-23",
-        rates: {XAG: 36.491124770935258},
-        success: true,
-        timestamp: 1658361300,
-        unit: "per ounce"
-      }
-      console.log("faked -->"+get_date());
-      console.log(today);
-      getToday(today);
+		var myHeaders = new Headers();
+		myHeaders.append("x-access-token", "goldapi-tbmm3u2tl5u6p0yg-io");
+		myHeaders.append("Content-Type", "application/json");
 
-      let historical ={
-        base: "NZD",
-        date: "2022-07-10",
-        rates: {XAG: 35.46519595107074},
-        success: true,
-        timestamp: 1658361300,
-        unit: "per ounce"
-      }
-      console.log("faked -->",picked_date);
-      console.log(historical);
-      getHistorical(historical);
-
-
-        //  ENABLE BELOW WHEN YOU WANT TO USE UP API 
-
-      // console.log("==========================")
-      // axios.get("https://metals-api.com/api/" + picked_date, { params: {access_key : "kth7y2mc5gd1z9xrc200xv86w7u227y7f6fiqlfgsijwf1i9558xr3dn08v2", base : "NZD",  symbols : "XAG"} }).then((res) => {
-      // console.log(res.data)
-      // getHistorical(res.data)
-      // ; });
-
-      // axios.get("https://metals-api.com/api/" + get_date(), { params: {access_key : "kth7y2mc5gd1z9xrc200xv86w7u227y7f6fiqlfgsijwf1i9558xr3dn08v2", base : "NZD",  symbols : "XAG"} }).then((res) => {
-      // console.log(res.data)
-      // getToday(res.data)
-      // ; });
-
-      
+		var requestOptions = {
+		method: 'GET',
+		headers: myHeaders,
+		};
+		var date = 20191110;
+		fetch("https://www.goldapi.io/api/XAU/USD/"+ date, requestOptions)
+		.then(response => response.text())
+		.then(result => console.log(result))
+		.catch(error => console.log('error', error));
+		get_api_stat()
     }
 
     function get_date(){
@@ -201,6 +174,23 @@ function App() {
       return yyyy + '-' +mm + '-' + dd;
 
     }
+	function get_api_stat(){
+	
+		var myHeaders = new Headers();
+		myHeaders.append("x-access-token", "goldapi-tbmm3u2tl5u6p0yg-io");
+		myHeaders.append("Content-Type", "application/json");
+
+		var requestOptions = {
+		method: 'GET',
+		headers: myHeaders,
+		// redirect: 'follow'
+		};
+
+		fetch("https://www.goldapi.io/api/stat", requestOptions)
+		.then(response => response.text())
+		.then(result => console.log("api usage ->" + result))
+		.catch(error => console.log('error', error));
+	}
 
   }
 
