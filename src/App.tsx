@@ -19,7 +19,7 @@ function App() {
         <p id = "header-intro">Input a historical date (after 2019) and see how much your gold has risen 🤞🏼 in price</p>
       </header>
 
-      <div>
+      <div id = "search-box">
         <br />
         
       <TextField
@@ -36,6 +36,7 @@ function App() {
       
         <IconButton
           aria-label="search"
+		  size = "large"
           onClick={() => {
             search();
           }}
@@ -46,7 +47,12 @@ function App() {
 
       {dataToda === undefined ? (
 
-        <p>Nothing entered yet!</p>
+        <div id="loader">
+        <span id="loader__element"></span>
+        <span id="loader__element"></span>
+        <span id="loader__element"></span>
+        </div>
+        
       
         ) : (
 
@@ -60,7 +66,7 @@ function App() {
           </span>
           
           <span id = "center">
-            {getArrow(dataHist.rates.XAG,dataToda.rates.XAG)}
+            <span id = "returned-emoji">{getArrow(dataHist.rates.XAG,dataToda.rates.XAG)}</span>
           </span>
 
           <span id = "right-result">
@@ -98,15 +104,16 @@ function App() {
   );
 
   function calculatePrice(historical: number,today: number,ounces: number) {
+    var dif;
     if (today>historical) {
-      var dif = ((today - historical)*ounces).toFixed(2);
-      if (dif =="NaN") {
+      dif = ((today - historical)*ounces).toFixed(2);
+      if (dif === "NaN") {
         return "...";
       }
       return ("congrats! you made $"+dif);
     }else{
-      var dif = ((historical - today)*ounces).toFixed(2);
-      if (dif =="NaN") {
+      dif = ((historical - today)*ounces).toFixed(2);
+      if (dif === "NaN") {
         return "...";
       }
       return ("Ohh no you lost $"+dif);
@@ -123,11 +130,12 @@ function App() {
 
 
   function getDiffrence(historical: number,today: number) {
+    var str;
     if (today>historical) {
-      var str = "🎉 Congrats you made $"+(today-historical).toFixed(2)+" per Ounce 🎉";
+      str = "🎉 Congrats you made $"+(today-historical).toFixed(2)+" per Ounce 🎉";
       return str;
     }else{
-      var str = "Ohh no you lost $"+(historical-today).toFixed(2)+" per Ounce";
+      str = "Ohh no you lost $"+(historical-today).toFixed(2)+" per Ounce";
       return str;
     }
   }
@@ -144,53 +152,52 @@ function App() {
       
       // had to have faked data during dev in order to not use up all api calls! 
 
-      // let today ={
-      //   base: "NZD",
-      //   date: "2022-07-23",
-      //   rates: {XAG: 32.72905401000014},
-      //   success: true,
-      //   timestamp: 1658361300,
-      //   unit: "per ounce"
-      // }
-      // console.log("faked -->"+get_date());
-      // console.log(today);
-      // getToday(today);
+      let today = {
+        base: "NZD",
+        date: "2022-07-23",
+        rates: {XAG: 36.491124770935258},
+        success: true,
+        timestamp: 1658361300,
+        unit: "per ounce"
+      }
+      console.log("faked -->"+get_date());
+      console.log(today);
+      getToday(today);
 
-      // let historical ={
-      //   base: "NZD",
-      //   date: "2022-07-10",
-      //   rates: {XAG: 34.87276006669757},
-      //   success: true,
-      //   timestamp: 1658361300,
-      //   unit: "per ounce"
-      // }
-      // console.log("faked -->",picked_date);
-      // console.log(historical);
-      // getHistorical(historical);
+      let historical ={
+        base: "NZD",
+        date: "2022-07-10",
+        rates: {XAG: 35.46519595107074},
+        success: true,
+        timestamp: 1658361300,
+        unit: "per ounce"
+      }
+      console.log("faked -->",picked_date);
+      console.log(historical);
+      getHistorical(historical);
 
 
         //  ENABLE BELOW WHEN YOU WANT TO USE UP API 
 
-      console.log("==========================")
-      axios.get("https://metals-api.com/api/" + picked_date, { params: {access_key : "kth7y2mc5gd1z9xrc200xv86w7u227y7f6fiqlfgsijwf1i9558xr3dn08v2", base : "NZD",  symbols : "XAG"} }).then((res) => {
-      console.log(res.data)
-      getHistorical(res.data)
-      ; });
+      // console.log("==========================")
+      // axios.get("https://metals-api.com/api/" + picked_date, { params: {access_key : "kth7y2mc5gd1z9xrc200xv86w7u227y7f6fiqlfgsijwf1i9558xr3dn08v2", base : "NZD",  symbols : "XAG"} }).then((res) => {
+      // console.log(res.data)
+      // getHistorical(res.data)
+      // ; });
 
-      axios.get("https://metals-api.com/api/" + get_date(), { params: {access_key : "kth7y2mc5gd1z9xrc200xv86w7u227y7f6fiqlfgsijwf1i9558xr3dn08v2", base : "NZD",  symbols : "XAG"} }).then((res) => {
-      console.log(res.data)
-      getToday(res.data)
-      ; });
+      // axios.get("https://metals-api.com/api/" + get_date(), { params: {access_key : "kth7y2mc5gd1z9xrc200xv86w7u227y7f6fiqlfgsijwf1i9558xr3dn08v2", base : "NZD",  symbols : "XAG"} }).then((res) => {
+      // console.log(res.data)
+      // getToday(res.data)
+      // ; });
 
       
     }
 
     function get_date(){
       var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
+      var dd = String(today.getDate()-1).padStart(2, '0');
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
-      // console.log("todays date = "+yyyy + '-' +mm + '-' + dd)
       return yyyy + '-' +mm + '-' + dd;
 
     }
