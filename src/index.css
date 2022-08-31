@@ -40,16 +40,47 @@ code {
 #search-box{
   margin-left: 50px;
 }
+@media only screen and (max-width: 767px) {
+
+#left-result{
+  float: left;
+  background-color: var(--second-layer);
+  width: 30%;
+  margin-left: 10%;
+  border-radius: 20px;
+  /* min-width: 190px; */
+}
+
+#right-result{
+  float: right;
+  background-color: var(--second-layer);
+  width: 30%;
+  margin-right: 10%;
+  border-radius: 20px;
+}
 
 #remark{
   border-radius: 20px;
   padding: 10px;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
   background-color: var(--second-layer);
   margin-top: 100px;
+}}
+#search-button{
+  animation: bounce 2s;
 }
 
+@keyframes bounce {
+  0%   { transform: scale(1,1)      translateY(0); }
+  10%  { transform: scale(1.1,.9)   translateY(0); }
+  30%  { transform: scale(.9,1.1)   translateY(-50px); }
+  50%  { transform: scale(1.05,.95) translateY(0); }
+  57%  { transform: scale(1,1)      translateY(-7px); }
+  64%  { transform: scale(1,1)      translateY(0); }
+  100% { transform: scale(1,1)      translateY(0); }
+}
+@media only screen and (min-width: 768px) {
 #left-result{
   float: left;
   background-color: var(--second-layer);
@@ -67,7 +98,15 @@ code {
   border-radius: 20px;
 }
 
-
+#remark{
+  border-radius: 20px;
+  padding: 10px;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: var(--second-layer);
+  margin-top: 100px;
+}
+}
 #loader {
   overflow: hidden;
   width: 100%;
