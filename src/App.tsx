@@ -15,7 +15,7 @@ return (
 	<div className="App">
 	<header className="App-header">
 		<h1 id = "title">Gold Prices</h1>
-		<p id = "header-intro">Input a historical date (after 2019) and see how much your gold has risen 🤞🏼 in price</p>
+		<p id = "header-intro">Input a historical date and see how much your gold has risen 🤞🏼 in price (USD)</p>
 	</header>
 
 	<div id = "search-box">
