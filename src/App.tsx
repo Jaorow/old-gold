@@ -149,7 +149,12 @@ function App() {
     }
 
     function search() {
-
+		console.log("Working on it...")
+		get_historical()
+		get_today()
+		// get_api_stat()
+    }
+	function get_historical(){
 		var myHeaders = new Headers();
 		myHeaders.append("x-access-token", "goldapi-tbmm3u2tl5u6p0yg-io");
 		myHeaders.append("Content-Type", "application/json");
@@ -161,10 +166,31 @@ function App() {
 		var date = 20191110;
 		fetch("https://www.goldapi.io/api/XAU/USD/"+ date, requestOptions)
 		.then(response => response.text())
-		.then(result => console.log(result))
+		.then(result => {
+			console.log("historical...")
+			console.log(JSON.parse(result))
+			getHistorical(JSON.parse(result))
+		})
 		.catch(error => console.log('error', error));
-		get_api_stat()
-    }
+	}
+	function get_today(){
+		var myHeaders = new Headers();
+		myHeaders.append("x-access-token", "goldapi-tbmm3u2tl5u6p0yg-io");
+		myHeaders.append("Content-Type", "application/json");
+
+		var requestOptions = {
+		method: 'GET',
+		headers: myHeaders,
+		};
+		fetch("https://www.goldapi.io/api/XAU/USD", requestOptions)
+		.then(response => response.text())
+		.then(result => {
+			console.log("historical...")
+			console.log(JSON.parse(result))
+			getToday(JSON.parse(result))
+		})
+		.catch(error => console.log('error', error));
+	}
 
     function get_date(){
       var today = new Date();
