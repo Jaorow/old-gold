@@ -127,7 +127,7 @@ function reverseDate(date:String) {
 function sortDateApi(date:String){
 	const splitDate = date.split("-");
 	console.log("date formated =" + splitDate[2]+splitDate[1]+splitDate[0])
-	return (splitDate[2]+splitDate[1]+splitDate[0]);
+	return (splitDate[0]+splitDate[1]+splitDate[2]);
 }
 
 
@@ -165,13 +165,13 @@ function getDiffrence(historical: number,today: number) {
 		method: 'GET',
 		headers: myHeaders,
 		};
-		var date = 20191110;
-		fetch("https://www.goldapi.io/api/XAU/USD/"+ date, requestOptions)
+		fetch("https://www.goldapi.io/api/XAU/USD/"+ sortDateApi(picked_date), requestOptions)
 		.then(response => response.text())
 		.then(result => {
 			console.log("historical...")
 			console.log(JSON.parse(result))
-			getHistorical(JSON.parse(result))
+			const obj = JSON.parse(result)
+			getHistorical(obj)
 		})
 		.catch(error => console.log('error', error));
 	}
@@ -189,7 +189,8 @@ function getDiffrence(historical: number,today: number) {
 		.then(result => {
 			console.log("Current...")
 			console.log(JSON.parse(result))
-			getToday(JSON.parse(result))
+			const obj = JSON.parse(result)
+			getToday(obj)
 		})
 		.catch(error => console.log('error', error));
 	}
