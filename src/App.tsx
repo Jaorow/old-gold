@@ -35,6 +35,7 @@ return (
 	
 		<IconButton
 		aria-label="search"
+		id = "search-button"
 		size = "large"
 		onClick={() => {
 			search();
