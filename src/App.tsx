@@ -7,204 +7,223 @@ import TextField from '@mui/material/TextField';
 
 // working coppy!!
 function App() {
-  const [picked_date, setDate] = useState("");
-  const [amount, Price] = useState("");
-  const [dataHist, getHistorical] = useState<undefined | any>(undefined);
-  const [dataToda, getToday] = useState<undefined | any>(undefined);
+const [picked_date, setDate] = useState("");
+const [amount, Price] = useState("");
+const [dataHist, getHistorical] = useState<undefined | any>(undefined);
+const [dataToda, getToday] = useState<undefined | any>(undefined);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1 id = "title">Gold Prices</h1>
-        <p id = "header-intro">Input a historical date (after 2019) and see how much your gold has risen 🤞🏼 in price</p>
-      </header>
+return (
+	<div className="App">
+	<header className="App-header">
+		<h1 id = "title">Gold Prices</h1>
+		<p id = "header-intro">Input a historical date (after 2019) and see how much your gold has risen 🤞🏼 in price</p>
+	</header>
 
-      <div id = "search-box">
-        <br />
-        
-      <TextField
-        id="date"
-        label="Historical price"
-        type="date"
-        defaultValue="2019-10-11"
-        sx={{width: 150}}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        onChange={e => setDate(e.target.value)}
-      />
-      
-        <IconButton
-          aria-label="search"
-		  size = "large"
-          onClick={() => {
-            search();
-          }}
-        >
-          <SearchIcon id = "date-search" style={{ fill: "orange" }} />
-        </IconButton>
-      </div>
+	<div id = "search-box">
+		<br />
+		
+	<TextField
+		id="date"
+		label="Historical price"
+		type="date"
+		defaultValue="2019-10-11"
+		sx={{width: 150}}
+		InputLabelProps={{
+		shrink: true,
+		}}
+		onChange={e => setDate(e.target.value)}
+	/>
+	
+		<IconButton
+		aria-label="search"
+		size = "large"
+		onClick={() => {
+			search();
+		}}
+		>
+		<SearchIcon id = "date-search" style={{ fill: "orange" }} />
+		</IconButton>
+	</div>
 
-      {dataToda === undefined ? (
+	<div id = "response-data">
+	{dataToda === undefined ? (
 
-        <div id="loader">
-        <span id="loader__element"></span>
-        <span id="loader__element"></span>
-        <span id="loader__element"></span>
-        </div>
-        
-      
-        ) : (
+		<div id="loader">
+		<span id="loader__element"></span>
+		<span id="loader__element"></span>
+		<span id="loader__element"></span>
+		</div>
+		
+	
+		) : (
 
-        <div id="result">
-            <p>
-              {reverseDate(picked_date)} to {reverseDate(get_date())}
-            </p>
-          <span id = "left-result">
-            <p>Historical</p>
-          <p id = "data_string">${parseFloat(dataHist.rates.XAG).toFixed(2)} per Ounce</p>
-          </span>
-          
-          <span id = "center">
-            <span id = "returned-emoji">{getArrow(dataHist.rates.XAG,dataToda.rates.XAG)}</span>
-          </span>
+		<div id="result">
+			<p>
+			{reverseDate(picked_date)} to {reverseDate(get_date())}
+			</p>
+		<span id = "left-result">
+			<p>Historical</p>
+		<p id = "data_string">${parseFloat(dataHist.price).toFixed(2)} per Ounce</p>
+		</span>
+		
+		<span id = "center">
+			<span id = "returned-emoji">{getArrow(dataHist.price,dataToda.price)}</span>
+		</span>
 
-          <span id = "right-result">
-            <p>Today</p>
-            {/* <p>{get_date()}</p> */}
-          <p id = "data_string">${parseFloat(dataToda.rates.XAG).toFixed(2)} per Ounce</p>
-          </span>
+		<span id = "right-result">
+			<p>Today</p>
+			{/* <p>{get_date()}</p> */}
+		<p id = "data_string">${parseFloat(dataToda.price).toFixed(2)} per Ounce</p>
+		</span>
 
+		<div id = "remark">
+		<p>{getDiffrence(dataHist.price,dataToda.price)}</p>
+		</div>
+		<br />
+		<p>How many ounces did you buy on {reverseDate(picked_date)}</p>
+		
+		<TextField
+		id="outlined-number"
+		label="Number"
+		type="number"
+		defaultValue="2019-10-11"
+		InputLabelProps={{
+			shrink: true,
+		}}
+		sx={{width: 90}}
+		onChange={e => Price(e.target.value)}
+		/>
+	
+		<p>{calculatePrice(dataHist.price,dataToda.price,parseInt(amount))}</p>
+		</div>
+	)}
+	</div>
 
+	</div>
+);
 
-
-          <div id = "remark">
-          <p>{getDiffrence(dataHist.rates.XAG,dataToda.rates.XAG)}</p>
-          </div>
-          <br />
-          <p>How many ounces did you buy on {reverseDate(picked_date)}</p>
-          
-          <TextField
-          id="outlined-number"
-          label="Number"
-          type="number"
-          defaultValue="2019-10-11"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          sx={{width: 90}}
-          onChange={e => Price(e.target.value)}
-        />
-      
-          <p>{calculatePrice(dataHist.rates.XAG,dataToda.rates.XAG,parseInt(amount))}</p>
-        </div>
-      )}
-
-    </div>
-  );
-
-  function calculatePrice(historical: number,today: number,ounces: number) {
-    var dif;
-    if (today>historical) {
-      dif = ((today - historical)*ounces).toFixed(2);
-      if (dif === "NaN") {
-        return "...";
-      }
-      return ("congrats! you made $"+dif);
-    }else{
-      dif = ((historical - today)*ounces).toFixed(2);
-      if (dif === "NaN") {
-        return "...";
-      }
-      return ("Ohh no you lost $"+dif);
-      
-    }
-    // var total = Dif * ounces; 
-    
-    
-  }
-  function reverseDate(date:String) {
-    const splitDate = date.split("-");
-    return (splitDate[2]+"/"+splitDate[1]+"/"+splitDate[0]);
-  }
-
-
-  function getDiffrence(historical: number,today: number) {
-    var str;
-    if (today>historical) {
-      str = "🎉 Congrats you made $"+(today-historical).toFixed(2)+" per Ounce 🎉";
-      return str;
-    }else{
-      str = "Ohh no you lost $"+(historical-today).toFixed(2)+" per Ounce";
-      return str;
-    }
-  }
-
-    function getArrow(historical:Date,today:Date) {
-      if (today>historical) {
-        return "✅";
-      }else{
-        return "❌";
-      }
-    }
-
-    function search() {
-      
-      // had to have faked data during dev in order to not use up all api calls! 
-
-      let today = {
-        base: "NZD",
-        date: "2022-07-23",
-        rates: {XAG: 36.491124770935258},
-        success: true,
-        timestamp: 1658361300,
-        unit: "per ounce"
-      }
-      console.log("faked -->"+get_date());
-      console.log(today);
-      getToday(today);
-
-      let historical ={
-        base: "NZD",
-        date: "2022-07-10",
-        rates: {XAG: 35.46519595107074},
-        success: true,
-        timestamp: 1658361300,
-        unit: "per ounce"
-      }
-      console.log("faked -->",picked_date);
-      console.log(historical);
-      getHistorical(historical);
+function calculatePrice(historical: number,today: number,ounces: number) {
+	var dif;
+	if (today>historical) {
+	dif = ((today - historical)*ounces).toFixed(2);
+	if (dif === "NaN") {
+		return "...";
+	}
+	return ("congrats! you made $"+dif);
+	}else{
+	dif = ((historical - today)*ounces).toFixed(2);
+	if (dif === "NaN") {
+		return "...";
+	}
+	return ("Ohh no you lost $"+dif);
+	
+	}    
+	
+}
+function reverseDate(date:String) {
+	const splitDate = date.split("-");
+	return (splitDate[2]+"/"+splitDate[1]+"/"+splitDate[0]);
+}
+function sortDateApi(date:String){
+	const splitDate = date.split("-");
+	console.log("date formated =" + splitDate[2]+splitDate[1]+splitDate[0])
+	return (splitDate[0]+splitDate[1]+splitDate[2]);
+}
 
 
-        //  ENABLE BELOW WHEN YOU WANT TO USE UP API 
+function getDiffrence(historical: number,today: number) {
+	var str;
+	if (today>historical) {
+	str = "🎉 Congrats you made $"+(today-historical).toFixed(2)+" per Ounce 🎉";
+	return str;
+	}else{
+	str = "Ohh no you lost $"+(historical-today).toFixed(2)+" per Ounce";
+	return str;
+	}
+}
 
-      // console.log("==========================")
-      // axios.get("https://metals-api.com/api/" + picked_date, { params: {access_key : "kth7y2mc5gd1z9xrc200xv86w7u227y7f6fiqlfgsijwf1i9558xr3dn08v2", base : "NZD",  symbols : "XAG"} }).then((res) => {
-      // console.log(res.data)
-      // getHistorical(res.data)
-      // ; });
+	function getArrow(historical:Date,today:Date) {
+	if (today>historical) {
+		return "✅";
+	}else{
+		return "❌";
+	}
+	}
 
-      // axios.get("https://metals-api.com/api/" + get_date(), { params: {access_key : "kth7y2mc5gd1z9xrc200xv86w7u227y7f6fiqlfgsijwf1i9558xr3dn08v2", base : "NZD",  symbols : "XAG"} }).then((res) => {
-      // console.log(res.data)
-      // getToday(res.data)
-      // ; });
+	function search() {
+		console.log("Working on it...")
+		get_historical()
+		get_today()
+		// get_api_stat()
+	}
+	function get_historical(){
+		var myHeaders = new Headers();
+		myHeaders.append("x-access-token", "goldapi-tbmm3u2tl5u6p0yg-io");
+		myHeaders.append("Content-Type", "application/json");
 
-      
-    }
+		var requestOptions = {
+		method: 'GET',
+		headers: myHeaders,
+		};
+		fetch("https://www.goldapi.io/api/XAU/USD/"+ sortDateApi(picked_date), requestOptions)
+		.then(response => response.text())
+		.then(result => {
+			console.log("historical...")
+			console.log(JSON.parse(result))
+			const obj = JSON.parse(result)
+			getHistorical(obj)
+		})
+		.catch(error => console.log('error', error));
+	}
+	function get_today(){
+		var myHeaders = new Headers();
+		myHeaders.append("x-access-token", "goldapi-tbmm3u2tl5u6p0yg-io");
+		myHeaders.append("Content-Type", "application/json");
 
-    function get_date(){
-      var today = new Date();
-      var dd = String(today.getDate()-1).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      var yyyy = today.getFullYear();
-      return yyyy + '-' +mm + '-' + dd;
+		var requestOptions = {
+		method: 'GET',
+		headers: myHeaders,
+		};
+		fetch("https://www.goldapi.io/api/XAU/USD", requestOptions)
+		.then(response => response.text())
+		.then(result => {
+			console.log("Current...")
+			console.log(JSON.parse(result))
+			const obj = JSON.parse(result)
+			getToday(obj)
+		})
+		.catch(error => console.log('error', error));
+	}
 
-    }
+	function get_date(){
+	var today = new Date();
+	var dd = String(today.getDate()-1).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();
+	return yyyy + '-' +mm + '-' + dd;
 
-  }
+	}
+	function get_api_stat(){
+	
+		var myHeaders = new Headers();
+		myHeaders.append("x-access-token", "goldapi-tbmm3u2tl5u6p0yg-io");
+		myHeaders.append("Content-Type", "application/json");
+
+		var requestOptions = {
+		method: 'GET',
+		headers: myHeaders,
+		// redirect: 'follow'
+		};
+
+		fetch("https://www.goldapi.io/api/stat", requestOptions)
+		.then(response => response.text())
+		.then(result => console.log("api usage ->" + result))
+		.catch(error => console.log('error', error));
+	}
+
+}
 
 
-  
+
 
 export default App;
