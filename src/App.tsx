@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './App.css';
-import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import TextField from '@mui/material/TextField';
