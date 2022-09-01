@@ -27,21 +27,21 @@ return (
 		type="date"
 		defaultValue="2019-10-11"
 		sx={{width: 150}}
-		InputLabelProps={{
-		shrink: true,
-		}}
+		InputLabelProps={{ shrink: true, }}
 		onChange={e => setDate(e.target.value)}
 	/>
 	
 		<IconButton
-		aria-label="search"
-		id = "search-button"
-		size = "large"
-		onClick={() => {
-			search();
-		}}
+			aria-label="search"
+			id = "search-button"
+			size = "large"
+			onClick={() => { search(); }}
 		>
-		<SearchIcon id = "date-search" style={{ fill: "orange" }} />
+
+			<SearchIcon 
+				id = "date-search" 
+				style={{ fill: "orange" }} 
+			/>
 		</IconButton>
 	</div>
 
@@ -49,9 +49,9 @@ return (
 	{dataToda === undefined ? (
 
 		<div id="loader">
-		<span id="loader__element"></span>
-		<span id="loader__element"></span>
-		<span id="loader__element"></span>
+			<span id="loader__element"></span>
+			<span id="loader__element"></span>
+			<span id="loader__element"></span>
 		</div>
 		
 	
@@ -83,15 +83,15 @@ return (
 		<p>How many ounces did you buy on {reverseDate(picked_date)}</p>
 		
 		<TextField
-		id="outlined-number"
-		label="Number"
-		type="number"
-		defaultValue="2019-10-11"
-		InputLabelProps={{
-			shrink: true,
-		}}
-		sx={{width: 90}}
-		onChange={e => Price(e.target.value)}
+			id="outlined-number"
+			label="Number"
+			type="number"
+			defaultValue="2019-10-11"
+			InputLabelProps={{
+				shrink: true,
+			}}
+			sx={{width: 90}}
+			onChange={e => Price(e.target.value)}
 		/>
 	
 		<p>{calculatePrice(dataHist.price,dataToda.price,parseInt(amount))}</p>
@@ -154,7 +154,7 @@ function getDiffrence(historical: number,today: number) {
 		console.log("Working on it...")
 		get_historical()
 		get_today()
-		// get_api_stat()
+		get_api_stat()
 	}
 	function get_historical(){
 		var myHeaders = new Headers();
