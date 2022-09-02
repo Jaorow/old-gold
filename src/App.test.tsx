@@ -5,5 +5,3 @@ import App from './App';
 test('renders page', () => {
   render(<App />);
 });
-
-

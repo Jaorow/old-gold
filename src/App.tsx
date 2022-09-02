@@ -25,10 +25,11 @@ return (
 		id="date"
 		label="Historical price"
 		type="date"
-		defaultValue="2019-10-11"
+		defaultValue="1995-10-11"
 		sx={{width: 150}}
 		InputLabelProps={{ shrink: true, }}
 		onChange={e => setDate(e.target.value)}
+		
 	/>
 	
 		<IconButton
