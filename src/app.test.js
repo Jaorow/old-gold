@@ -3,6 +3,10 @@ import Enzyme, { shallow,mount } from "enzyme";
 import App from "./App";
 import Adapter from "enzyme-adapter-react-16";
 
+import { render, screen } from '@testing-library/react';
+import { unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
+
 Enzyme.configure({ adapter: new Adapter()});
 
 const mockHis = [{ price : 1 }];
@@ -33,5 +37,45 @@ describe("App",() => {
 
     });
 
-
+    test("fake api call", () => {
+        const wrapper = shallow(<App getHistorical={mockHis} getToday={mockTod}/>)
+        console.log(wrapper.find("displayResult"))
+        expect(wrapper.find("displayResult"))    
+    });
 })
+
+
+test('renders page', () => {
+	render(<App />);
+});
+
+// tests setup
+let container = null;
+beforeEach(() => {
+	container = document.createElement("header");
+	document.body.appendChild(container);
+});
+afterEach(() => {
+	unmountComponentAtNode(container);
+	container.remove();
+	container = null;
+});
+
+it("renders title and intro", () => {
+  act(() => {
+    render(<App />, container);
+  });
+  console.dir(container)
+//   expect(container.textContent).toContain("Gold Prices");
+});
+
+it("tests contents", () => {
+	render(<App />);
+	expect(screen.getByRole("heading")).toHaveTextContent(/Gold Prices/);
+	expect(screen.getByRole("dateSelector")).toBeInTheDocument();
+});
+
+it("tests rendering results",() => {
+		const opp = render(<App />);
+        
+});

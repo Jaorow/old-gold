@@ -58,7 +58,7 @@ return (
 	
 		) : (
 
-		<div id="result">
+		<div id="result" role="displayResult">
 			<p>
 			{reverseDate(picked_date)} to {reverseDate(get_date())}
 			</p>
