@@ -17,10 +17,11 @@ return (
 		<p id = "header-intro">Input a historical date and see how much your gold has risen 🤞🏼 in price (USD)</p>
 	</header>
 
-	<div id = "search-box">
+	<div id = "search-box" >
 		<br />
 		
 	<TextField
+		role= "dateSelector"
 		id="date"
 		label="Historical price"
 		type="date"
