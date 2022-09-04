@@ -5,6 +5,10 @@ import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({ adapter: new Adapter()});
 
+const mockHis = [{ price : 1 }];
+const mockTod = [{ price : 2 }];
+
+
 describe("App",() => {
     test("renders", () => {
         const wrapper = shallow(<App />);
@@ -12,20 +16,10 @@ describe("App",() => {
     });
 
     test("renders app", () => {
-        const wrapper = shallow(<App />);
-        console.log(wrapper);
-        // expect(wrapper.children(App).length).toEqual(1);
+        const wrapper = shallow(<App getHistorical={mockHis} getToday={mockTod}/>);
+
+        expect(wrapper).toMatchSnapshot();
     });
-
-//     test("date input", () => {
-//     // tests date_input
-//     const wrapper = shallow(<App />);
-//     wrapper.find("date").simulate("change",{
-//         target: {value: "1995-10-01" }
-//     });
-
-//     expect(wrapper.find("date").props.value).toEqual("1995-10-01");
-// });
-
+    
 
 })
