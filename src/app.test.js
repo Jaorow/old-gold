@@ -39,11 +39,22 @@ describe("App",() => {
 
     test("fake api call", () => {
         const wrapper = shallow(<App getHistorical={mockHis} getToday={mockTod}/>)
-        console.log(wrapper.find("displayResult"))
         expect(wrapper.find("displayResult"))    
     });
 })
 
+//get button working
+describe("App after input",()=>{
+    test("clicks button", () =>{
+        const search = sinon.spy();
+        const wrapper = shallow(<App onClick={search} />);
+        wrapper.find('search-button').simulate('click');
+        expect(onButtonClick).to.have.property();
+    })
+
+
+
+});
 
 test('renders page', () => {
 	render(<App />);
@@ -65,7 +76,6 @@ it("renders title and intro", () => {
   act(() => {
     render(<App />, container);
   });
-  console.dir(container)
 //   expect(container.textContent).toContain("Gold Prices");
 });
 
