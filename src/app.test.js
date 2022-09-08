@@ -39,20 +39,6 @@ describe("App",() => {
     });
 })
 
-//get button working
-describe("App after input",()=>{
-    test("checks loader",() =>{
-        const wrapper = shallow(<App/>)
-        expect(wrapper.find('#loader'))
-    })
-    test("clicks button", () =>{
-        const wrapper = shallow(<App />);
-        wrapper.find('#search-button').simulate('click');
-        expect(wrapper.find('#result'))
-        expect(wrapper.find('loader'))
-    })
-});
-
 test('renders page', () => {
 	render(<App />);
 });
@@ -85,4 +71,27 @@ it("tests contents", () => {
 it("tests rendering results",() => {
 		const opp = render(<App />);
         
+});
+
+// tests search button
+describe("tests input",()=>{
+    test("checks loader",() =>{
+        const wrapper = shallow(<App/>)
+        expect(wrapper.find('#loader'))
+    })
+    test("clicks button", () =>{
+        const wrapper = shallow(<App />);
+        wrapper.find('#search-button').simulate('click');
+        expect(wrapper.find('#result'))
+        expect(wrapper.find('#loader'))
+        // we know the button clicks from the console log 
+    })
+    test("Tests date input", () =>{
+        const wrapper = shallow(<App />);
+        const date = wrapper.find('#date');
+        date.simulate('change', { target: { value: '2020-10-11' } })
+        wrapper.find('#search-button').simulate('click');
+        expect(wrapper.find('#result'))
+        // we know the button clicks from the console log 
+    })
 });
