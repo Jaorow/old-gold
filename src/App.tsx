@@ -4,7 +4,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import TextField from '@mui/material/TextField';
 
-// working coppy!!
 function App() {
 const [picked_date, setDate] = useState("");
 const [amount, Price] = useState("");
@@ -18,17 +17,19 @@ return (
 		<p id = "header-intro">Input a historical date and see how much your gold has risen 🤞🏼 in price (USD)</p>
 	</header>
 
-	<div id = "search-box">
+	<div id = "search-box" >
 		<br />
 		
 	<TextField
+		role= "dateSelector"
 		id="date"
 		label="Historical price"
 		type="date"
-		defaultValue="2019-10-11"
+		defaultValue="1995-10-11"
 		sx={{width: 150}}
 		InputLabelProps={{ shrink: true, }}
 		onChange={e => setDate(e.target.value)}
+		
 	/>
 	
 		<IconButton
@@ -57,7 +58,7 @@ return (
 	
 		) : (
 
-		<div id="result">
+		<div id="result" role="displayResult">
 			<p>
 			{reverseDate(picked_date)} to {reverseDate(get_date())}
 			</p>
