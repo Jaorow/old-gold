@@ -19,9 +19,6 @@ describe("App",() => {
         const wrapper = shallow(<App />);
         expect(wrapper.exists()).toBe(true);    
     });
-
-    
-
     test("renders app", () => {
         const wrapper = shallow(<App getHistorical={mockHis} getToday={mockTod}/>);
         expect(wrapper).toMatchSnapshot();
@@ -34,7 +31,6 @@ describe("App",() => {
         getHistorical : { mockHis },
         getToday : { mockTod }
         });
-
     });
 
     test("fake api call", () => {
@@ -45,15 +41,16 @@ describe("App",() => {
 
 //get button working
 describe("App after input",()=>{
-    test("clicks button", () =>{
-        const search = sinon.spy();
-        const wrapper = shallow(<App onClick={search} />);
-        wrapper.find('search-button').simulate('click');
-        expect(onButtonClick).to.have.property();
+    test("checks loader",() =>{
+        const wrapper = shallow(<App/>)
+        expect(wrapper.find('#loader'))
     })
-
-
-
+    test("clicks button", () =>{
+        const wrapper = shallow(<App />);
+        wrapper.find('#search-button').simulate('click');
+        expect(wrapper.find('#result'))
+        expect(wrapper.find('loader'))
+    })
 });
 
 test('renders page', () => {
