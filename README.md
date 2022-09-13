@@ -56,5 +56,5 @@ this task was much harder than the others as it was quite hard to find a tutoria
 ### Front End logic
 - [x] Demonstration of complex FE logic
 
-asuming Front end logic is coding logic in your front end app i compleated this function by having a function that calculates the amount you have made of a set amount of gold
+asuming Front end logic is coding logic in your front end app i compleated this  by having a function that calculates the amount you have made of a set amount of gold.
 ![price](img/function_price.png)

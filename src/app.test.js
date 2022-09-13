@@ -55,12 +55,6 @@ afterEach(() => {
 	container = null;
 });
 
-it("renders title and intro", () => {
-  act(() => {
-    render(<App />, container);
-  });
-//   expect(container.textContent).toContain("Gold Prices");
-});
 
 it("tests contents", () => {
 	render(<App />);
@@ -68,17 +62,15 @@ it("tests contents", () => {
 	expect(screen.getByRole("dateSelector")).toBeInTheDocument();
 });
 
-it("tests rendering results",() => {
-		const opp = render(<App />);
-        
-});
 
 // tests search button
 describe("tests input",()=>{
     test("checks loader",() =>{
         const wrapper = shallow(<App/>)
-        expect(wrapper.find('#loader'))
+        const item = wrapper.find('#loader')
+        expect(item.exists())
     })
+
     test("clicks button", () =>{
         const wrapper = shallow(<App />);
         wrapper.find('#search-button').simulate('click');
