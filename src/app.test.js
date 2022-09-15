@@ -49,6 +49,7 @@ beforeEach(() => {
 	container = document.createElement("header");
 	document.body.appendChild(container);
 });
+
 afterEach(() => {
 	unmountComponentAtNode(container);
 	container.remove();
