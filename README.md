@@ -37,19 +37,19 @@ These first two requirements were rather easy to implement as i have worked with
 
 I enjoyed making fluid animations with css Keyframes and animation methods so i made two animations inside my app
 
-The first being a loading animation showen before the result is rendered
 
+<!-- 
 ![loader_code](img/loader_code.png)
-![loader_gif](img/loader.gif)
+![loader_gif](img/loader.gif) -->
 
-And the second is the search button bouncing on hover
+The first being a loading animation showen before the result is rendered and the second is the search button bouncing on hover
 
 ![bounce_code](img/bounce_code.png)
 ![bounce_gif](img/bounce.gif)
 
 <p float="middle">
-  <img src="/img/bounce_code.png" width="100" />
-  <img src="/img/loader_code.png" width="100" /> 
+  <img src="/img/bounce_code.png"  />
+  <img src="/img/loader_code.png"  /> 
   </p>
 
 ### Testing
