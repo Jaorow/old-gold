@@ -48,8 +48,8 @@ The first being a loading animation showen before the result is rendered and the
 ![bounce_gif](img/bounce.gif)
 
 <p float="middle">
-  <img src="/img/bounce_code.png"  />
-  <img src="/img/loader_code.png"  /> 
+  <img src="/img/bounce_code.png" width="300" />
+  <img src="/img/loader_code.png" width="300" /> 
   </p>
 
 ### Testing
