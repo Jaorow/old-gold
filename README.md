@@ -47,6 +47,11 @@ And the second is the search button bouncing on hover
 ![bounce_code](img/bounce_code.png)
 ![bounce_gif](img/bounce.gif)
 
+<p float="middle">
+  <img src="/img/bounce_code.png" width="100" />
+  <img src="/img/loader_code.png" width="100" /> 
+  </p>
+
 ### Testing
 - [x] Comprehensive unit testing
 see ```src/app.test.js``` for unit testing.
