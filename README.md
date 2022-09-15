@@ -63,3 +63,11 @@ this task was much harder than the others as it was quite hard to find a tutoria
 
 asuming Front end logic is coding logic in your front end app i compleated this  by having a function that calculates the amount you have made of a set amount of gold.
 ![price](img/function_price.png)
+
+### Progressive Web App (PWA)
+
+- [x] Progressive Web App (PWA) functionality w/ clear use of the service worker
+
+After setting finding out that Front End Logic was in fact not logic on the front end of a web app and after spending many hours trying to learn and fiddlign with websockets (with no success) i settled on using a service worker to create a Progressive Web App. 
+
+![PWA](img/working_pwa.png)
